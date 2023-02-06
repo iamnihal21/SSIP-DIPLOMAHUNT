@@ -1,3 +1,13 @@
+// Start time of the SCript
+const startTime = new Date();
+
+// Google Sheet config
+const sheetId = "1yHd9LruwJGYuuHuWX5oHKK8AmTdbscqYQNNEsSiwuko";
+const apiKey = "AIzaSyDfdTtPMhqb_Fye-HA_aJ_LFJDobBZCpJ4";
+
+// URL to retrieve data from Google Sheet API
+const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`;
+
 // let myCity = "ALL";
 // let myBranch = "COMPUTER ENGG";
 // let myCollege = "ALL";
@@ -12,18 +22,7 @@ let meritMark;
 let myCategory;
 const outputArea = document.querySelector('#outputArea')
 
-const meritList = [
-    { branch: 'BIO- MEDICAL ENGG', open: 88, ews: '-', sc: '-', sebc: '-', st: '-', type: 'GOV', city: 'Rajkot', college: ' A.V.PAREKH TECHNICAL INSTITUTE Rajkot' },
-    { branch: 'CDDM', open: 135, ews: '-', sc: '-', sebc: 124, st: '-', type: 'GOV', city: 'Rajkot', college: 'A.V.PAREKH TECHNICAL INSTITUTE Rajkot' },
-    { branch: 'COMPUTER ENGG', open: 207, ews: 193, sc: 174, sebc: 201, st: 184, type: 'GOV', city: 'Rajkot', college: 'A.V.PAREKH TECHNICAL INSTITUTE Rajkot ' },
-    { branch: 'ELECTRICAL ENGG', open: 92, ews: '-', sc: '-', sebc: '-', st: '-', type: 'GOV', city: 'Rajkot', college: 'A.V.PAREKH TECHNICAL INSTITUTE Rajkot ' },
-    { branch: 'ELECTRONICS & COMMUNICATION ENGG', open: 110, ews: '-', sc: '-', sebc: '-', st: '-', type: 'GOV', city: 'Rajkot', college: 'A.V.PAREKH TECHNICAL INSTITUTE Rajkot' },
-    { branch: 'INSTRUMENTATION & CONTROL', open: 115, ews: '-', sc: '-', sebc: '-', st: '-', type: 'GOV', city: 'Rajkot', college: 'A.V.PAREKH TECHNICAL INSTITUTE Rajkot' },
-    { branch: 'AUTOMOBILE ENGG', open: 94, ews: '-', sc: '-', sebc: '-', st: '-', type: 'GOV', city: 'Surendranager', college: 'C.U.SHAH GOVT. POLYTECHNIC Surendranager' },
-    { branch: 'CDDM', open: 104, ews: '-', sc: '-', sebc: '-', st: '-', type: 'GOV', city: 'Surendranager', college: 'C.U.SHAH GOVT. POLYTECHNIC Surendranager' },
-    { branch: 'CIVIL ENGG', open: 87, ews: '-', sc: '-', sebc: '-', st: '-', type: 'GOV', city: 'Surendranager', college: 'C.U.SHAH GOVT. POLYTECHNIC Surendranager' },
-    { branch: 'COMPUTER ENGG', open: 171, ews: 139, sc: 136, sebc: 135, st: '-', type: 'GOV', city: 'Surendranager', college: 'C.U.SHAH GOVT. POLYTECHNIC Surendranager' },
-]
+const meritList = []
 
 function data() {
     outputArea.innerHTML = ''
@@ -33,47 +32,44 @@ function data() {
     myCollegeType = document.querySelector('#type').value
     myCategory = document.querySelector('#category').value
     myCity = document.querySelector('#city').value
+
     for (let i = 0; i < 10; i++) // returns a Boolean value
     {
-        console.log(isMark(meritMark, myCategory, meritList[i]),
-            isBranch(myBranch, meritList[i].branch),
-            isCollegeType(myCollegeType, meritList[i].type),
-            isCity(myCity, meritList[i].city),
-            isCollege(myCollege, meritList[i].college));
-
+        // console.log(isMark(meritMark, myCategory, meritList[i]),
+        //     isBranch(myBranch, meritList[i].COURSE_NAME),
+        //     iSCollegeType(myCollegeType, meritList[i].COLLEGE_TYPE),
+        //     iSCity(myCity, meritList[i].CITY_NAME),
+        //     iSCollege(myCollege, meritList[i].COLLEGE_NAME));
 
 
         if (isMark(meritMark, myCategory, meritList[i]) &&
-            isBranch(myBranch, meritList[i].branch) &&
-            isCollegeType(myCollegeType, meritList[i].type) &&
-            isCity(myCity, meritList[i].city) &&
-            isCollege(myCollege, meritList[i].college)) {
-
-            //                         let li = document.createElement("li");
-            //   li.innerText = `${meritList[i].college} | ${meritList[i].branch} | `;
+            isBranch(myBranch, meritList[i].COURSE_NAME) &&
+            isCollegeType(myCollegeType, meritList[i].COLLEGE_TYPE) &&
+            isCity(myCity, meritList[i].CITY_NAME) &&
+            isCollege(myCollege, meritList[i].COLLEGE_NAME)) {
 
             let tr = document.createElement('tr');
             let td1 = document.createElement('td');
             let td2 = document.createElement('td');
             let td3 = document.createElement('td');
 
-            td1.innerHTML = meritList[i].college
-            td2.innerHTML = meritList[i].branch
+            td1.innerHTML = meritList[i].COLLEGE_NAME
+            td2.innerHTML = meritList[i].COURSE_NAME
 
             if (myCategory == "OPEN") {
-                td3.innerHTML += `${meritList[i].open}`
+                td3.innerHTML += `${meritList[i].OPEN}`
             }
             else if (myCategory == "EWS") {
-                td3.innerHTML += `${meritList[i].ews}`
+                td3.innerHTML += `${meritList[i].EWS}`
             }
             else if (myCategory == "SC") {
-                td3.innerHTML += `${meritList[i].sc}`
+                td3.innerHTML += `${meritList[i].SC}`
             }
             else if (myCategory == "SEBC") {
-                td3.innerHTML += `${meritList[i].sebc}`
+                td3.innerHTML += `${meritList[i].SEBC}`
             }
             else if (myCategory == "ST") {
-                td3.innerHTML += `${meritList[i].st}`
+                td3.innerHTML += `${meritList[i].ST}`
             }
             else { }
             outputArea.innerHTML += '\n'
@@ -88,7 +84,7 @@ function data() {
 
 function isMark(mark, category, myMarit) {
     if (category == "OPEN") {
-        if (parseInt(mark) > (parseInt(myMarit.open) - 2)) {
+        if (parseInt(mark) > (parseInt(myMarit.OPEN) - 2)) {
             return true;
         } else {
             return false;
@@ -99,7 +95,7 @@ function isMark(mark, category, myMarit) {
         if (myMarit[2] == "-" || myMarit[2] == "")
             return false;
         else {
-            if (parseInt(mark) > (parseInt(myMarit.ews) - 2)) {
+            if (parseInt(mark) > (parseInt(myMarit.EWS) - 2)) {
                 return true;
             } else {
                 return false;
@@ -111,7 +107,7 @@ function isMark(mark, category, myMarit) {
         if (myMarit[3] == "-" || myMarit[3] == "")
             return false;
         else {
-            if (parseInt(mark) > (parseInt(myMarit.sc) - 2)) {
+            if (parseInt(mark) > (parseInt(myMarit.SC) - 2)) {
                 return true;
             } else {
                 return false;
@@ -121,7 +117,7 @@ function isMark(mark, category, myMarit) {
         if (myMarit[4] == "-" || myMarit[4] == "")
             return false;
         else {
-            if (parseInt(mark) > (parseInt(myMarit.sebc) - 2)) {
+            if (parseInt(mark) > (parseInt(myMarit.SEBC) - 2)) {
                 return true;
             } else {
                 return false;
@@ -131,7 +127,7 @@ function isMark(mark, category, myMarit) {
         if (myMarit[5] == "-" || myMarit[5] == "")
             return false;
         else {
-            if (parseInt(mark) > (parseInt(myMarit.st) - 2)) {
+            if (parseInt(mark) > (parseInt(myMarit.ST) - 2)) {
                 return true;
             } else {
                 return false;
@@ -193,3 +189,39 @@ function isCollegeType(collegetype, myMarit) {
         }
     }
 }
+
+// Fetch data from Google Sheet
+const fetchData = async () => {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const values = data.values;
+
+        if (values.length) {
+            const headers = values[0];
+
+            for (let i = 1; i < values.length; i++) {
+                const dataObject = {};
+                headers.forEach((header, index) => {
+                    dataObject[header] = values[i][index];
+                });
+                meritList.push(dataObject);
+            }
+        } else {
+            console.error("No data found in the Google Sheet");
+        }
+        console.log(meritList);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+fetchData();
+
+// End time of the SCript
+const endTime = new Date();
+
+// Total time taken by SCript
+const timeDifference = endTime - startTime;
+console.log(`${timeDifference} Milisecond`)
