@@ -33,8 +33,7 @@ function data() {
     myCategory = document.querySelector('#category').value
     myCity = document.querySelector('#city').value
 
-    for (let i = 0; i < 10; i++) // returns a Boolean value
-    {
+    for (let i = 0; i < meritList.length; i++) {
         // console.log(isMark(meritMark, myCategory, meritList[i]),
         //     isBranch(myBranch, meritList[i].COURSE_NAME),
         //     iSCollegeType(myCollegeType, meritList[i].COLLEGE_TYPE),
