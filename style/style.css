@@ -1,6 +1,84 @@
+:root {
+    --primary: #052963;
+    --secondary: #fbac1b;
+    --lightsecondary: #ffc355;
+}
+
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
     font-family: Arial, Helvetica, sans-serif;
 }
-td {
-    border: 1px solid black;
+
+/* Header start */
+
+header {
+    text-align: center;
 }
+
+header .logo {
+    padding: 30px 0 20px;
+    background-color: var(--secondary);
+}
+
+header nav {
+    background-color: var(--primary);
+    width: fit-content;
+    margin: auto;
+    padding: 12px 24px;
+    border-radius: 0 0 16px 16px;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 8px;
+    list-style: none;
+}
+
+header nav ul li a {
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    transition: 200ms;
+}
+
+header nav ul li select {
+    font-size: 16px;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+header nav ul li select option {
+    color: #000;
+}
+
+/* Header end */
+
+/* Footer start */
+footer {
+    background-color: var(--primary);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer a{
+    color: #fff;
+    text-decoration: none;
+    transition: 200ms;
+    outline: none;
+}
+
+footer a:hover{
+    color: var(--lightsecondary);
+}
+/* Footer end */

@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
+    <script src="https://kit.fontawesome.com/a5c22c6bc6.js" crossorigin="anonymous"></script>
     <title>Diploma Hunt</title>
 </head>
 
 <body>
-    <input type="text" id="mark" placeholder="Mark" value="200">
+    <!-- <input type="text" id="mark" placeholder="Mark" value="200">
     <input type="text" id="branch" placeholder="Branch" value="ALL">
     <input type="text" id="college" placeholder="College" value="ALL">
     <input type="text" id="type" placeholder="Type" value="ALL">
     <input type="text" id="category" placeholder="Category" value="OPEN">
     <input type="text" id="city" placeholder="City" value="ALL">
     <button onclick="data()">FIND</button>
-    <!-- <ol id="outputArea"></ol> -->
 
     <table id="outputArea">
         <tr>
@@ -25,7 +25,30 @@
             <td>Branch Name</td>
             <td>Closing Rank</td>
         </tr>
-    </table>
+    </table> -->
+
+    <header>
+        <div class="logo">
+            <img src="assets/logo.png" alt="logo" width="200px">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Find College</a></li>
+                <li><a href="#">Latest News</a></li>
+                <li>
+                    <select name="website_language" id="website_language">
+                        <option value="english">English</option>
+                        <option value="hindi">हिंदी</option>
+                        <option value="gujarati">ગુજરાતી</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <footer>
+        <p>Made by <a href="#">Nihal <i class="fa-solid fa-music"></i></a> | <a href="#">Satyajit <i class="fa-solid fa-gamepad"></i></a> | <a href="#">Pushpak <i class="fa-brands fa-apple"></i></a></p>
+    </footer>
 
     <script src="script/script.js"></script>
 </body>
