@@ -8,8 +8,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
     font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
 }
 
 /* Header start */
@@ -21,6 +21,10 @@ header {
 header .logo {
     padding: 30px 0 20px;
     background-color: var(--secondary);
+}
+
+header .logo h2{
+    display: none;
 }
 
 header nav {
@@ -41,14 +45,16 @@ header nav ul li {
     list-style: none;
 }
 
-header nav ul li a {
+/* header nav ul li a, */
+header nav ul li label {
     font-size: 16px;
     color: #fff;
     text-decoration: none;
     transition: 200ms;
+    cursor: pointer;
 }
 
-header nav ul li select {
+/* header nav ul li select {
     font-size: 16px;
     color: #fff;
     background-color: transparent;
@@ -59,9 +65,149 @@ header nav ul li select {
 
 header nav ul li select option {
     color: #000;
+} */
+
+header nav ul li label:last-child {
+    display: none;
 }
 
 /* Header end */
+
+/* Common code for section start */
+section > div{
+    width: 80%;
+    padding: 70px;
+    margin: 0 auto;
+}
+
+#hero_checkbox:checked + section {
+    display: block;
+}
+#hero_checkbox:not(:checked) + section {
+    display: none;
+}
+
+#find_checkbox:checked + section {
+    display: block;
+}
+#find_checkbox:not(:checked) + section {
+    display: none;
+}
+
+#news_checkbox:checked + section {
+    display: block;
+}
+#news_checkbox:not(:checked) + section {
+    display: none;
+}
+
+/* Common code for section end */
+
+/* Hero start */
+#hero > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#hero div div {
+    width: 50%;
+}
+
+#hero .hero_right iframe {
+    width: 100%;
+    aspect-ratio: 9/6;
+}
+
+#hero .hero_left h2 {
+    font-size: 4vw;
+}
+
+#hero button {
+    display: block;
+    margin: 14px auto;
+    font-size: 18px;
+    padding: 4px 20px;
+    background-color: var(--primary);
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#hero button label {
+    cursor: pointer;
+}
+/* Hero end */
+
+/* Find college start */
+#find_college .find_college_title h2 {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+#find_college .find_college_input {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+#find_college .find_college_input label {
+    display: inline-block;
+    margin: 4px 0;
+}
+
+#find_college .find_college_input :is(input, select)    {
+    width: 150px;
+    padding: 4px 8px;
+    font-size: large;
+}
+
+#find_college .find_college_search button {
+    display: block;
+    margin: 14px auto;
+    font-size: 18px;
+    padding: 4px 20px;
+    background-color: var(--primary);
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+/* Find college end */
+
+/* Final result start */
+.find_college_success {
+    margin: 30px 0;
+}
+
+.find_college_success h2 {
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.find_college_success > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex: 33%;
+}
+
+.find_college_success .result_success {
+    border: 1px solid #808080;
+    border-radius: 8px;
+    padding: 24px;
+    width: 300px;
+    margin-bottom: 24px;
+}
+
+.find_college_success .result_success p:not(:last-child) {
+    margin-bottom: 4px;
+}
+
+.find_college_success .result_success p span {
+    font-weight: 600;
+}
 
 /* Footer start */
 footer {
@@ -82,3 +228,115 @@ footer a:hover{
     color: var(--lightsecondary);
 }
 /* Footer end */
+
+/* PWA and Mobile Responsive */
+
+@media (max-width: 768px) {
+    section > div{
+        padding: 30px;
+    }
+    
+    /* Header start */
+
+    header {
+        text-align: left;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    header .logo img{
+        display: none;
+    }
+
+    header .logo h2{
+        display: block;
+        width: 80%;
+        margin: auto;
+        color: var(--primary);
+        font-size: 32px;
+    }
+
+    header nav {
+        border-radius: 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    header nav ul {
+        justify-content: space-around;
+    }
+
+    /* header nav ul li:last-child {
+        position: fixed;
+        top: 30px;
+        right: 30px;
+    } */
+
+    /* header nav ul li select {
+        color: #000;
+    }
+
+    header nav ul li select option {
+        color: #000;
+    } */
+
+    header nav ul li:last-child {
+        right: 8px;
+    }
+
+    header nav ul li label:first-child {
+        display: none;
+    }
+    header nav ul li label:last-child {
+        display: block;
+    }
+
+    /* Header end */
+
+    /* Common section start */
+    section {
+        margin-top: 86px;
+    }
+    /* Common section end */
+
+    /* Hero start */
+    #hero {
+        display: block;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    #hero div {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    #hero .hero_left h2 {
+        font-size: 6vw;
+    }
+
+    #hero > div {
+        display: block;
+    }
+
+    /* Hero end */
+
+    /* Footer start */
+    footer {
+        display: none;
+    }
+    /* Footer end */
+}
+
+@media (max-width: 768px) {
+
+    
+
+    
+}

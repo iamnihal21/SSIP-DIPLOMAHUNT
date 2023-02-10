@@ -26,19 +26,19 @@ const meritList = []
 
 function data() {
     outputArea.innerHTML = ''
-    meritMark = document.querySelector('#mark').value
-    myBranch = document.querySelector('#branch').value
-    myCollege = document.querySelector('#college').value
-    myCollegeType = document.querySelector('#type').value
-    myCategory = document.querySelector('#category').value
-    myCity = document.querySelector('#city').value
-
+    meritMark = document.querySelector('#student_mark').value
+    myBranch = document.querySelector('#branch_name').value
+    myCollege = document.querySelector('#college_name').value
+    myCollegeType = document.querySelector('#college_type').value
+    myCategory = document.querySelector('#student_category').value
+    myCity = document.querySelector('#city_name').value
+    console.log(meritMark, myBranch, myCollege,myCollegeType,myCategory,myCity)
     for (let i = 0; i < meritList.length; i++) {
-        // console.log(isMark(meritMark, myCategory, meritList[i]),
-        //     isBranch(myBranch, meritList[i].COURSE_NAME),
-        //     iSCollegeType(myCollegeType, meritList[i].COLLEGE_TYPE),
-        //     iSCity(myCity, meritList[i].CITY_NAME),
-        //     iSCollege(myCollege, meritList[i].COLLEGE_NAME));
+        console.log(isMark(meritMark, myCategory, meritList[i]) &&
+        isBranch(myBranch, meritList[i].COURSE_NAME) &&
+        isCollegeType(myCollegeType, meritList[i].COLLEGE_TYPE) &&
+        isCity(myCity, meritList[i].CITY_NAME) &&
+        isCollege(myCollege, meritList[i].COLLEGE_NAME));
 
 
         if (isMark(meritMark, myCategory, meritList[i]) &&
@@ -47,36 +47,49 @@ function data() {
             isCity(myCity, meritList[i].CITY_NAME) &&
             isCollege(myCollege, meritList[i].COLLEGE_NAME)) {
 
-            let tr = document.createElement('tr');
-            let td1 = document.createElement('td');
-            let td2 = document.createElement('td');
-            let td3 = document.createElement('td');
+            let div = document.createElement('div');
+            let p1 = document.createElement('p');
+            let p2 = document.createElement('p');
+            let p3 = document.createElement('p');
+            let p4 = document.createElement('p');
+            let s1 = document.createElement('span');
+            let s2 = document.createElement('span');
+            let s3 = document.createElement('span');
+            let s4 = document.createElement('span');
 
-            td1.innerHTML = meritList[i].COLLEGE_NAME
-            td2.innerHTML = meritList[i].COURSE_NAME
+            s1.innerHTML = meritList[i].COLLEGE_NAME
+            s2.innerHTML = meritList[i].COURSE_NAME
 
             if (myCategory == "OPEN") {
-                td3.innerHTML += `${meritList[i].OPEN}`
+                s3.innerHTML = `${meritList[i].OPEN}`
             }
             else if (myCategory == "EWS") {
-                td3.innerHTML += `${meritList[i].EWS}`
+                s3.innerHTML = `${meritList[i].EWS}`
             }
             else if (myCategory == "SC") {
-                td3.innerHTML += `${meritList[i].SC}`
+                s3.innerHTML = `${meritList[i].SC}`
             }
             else if (myCategory == "SEBC") {
-                td3.innerHTML += `${meritList[i].SEBC}`
+                s3.innerHTML = `${meritList[i].SEBC}`
             }
             else if (myCategory == "ST") {
-                td3.innerHTML += `${meritList[i].ST}`
+                s3.innerHTML = `${meritList[i].ST}`
             }
             else { }
-            outputArea.innerHTML += '\n'
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
+            s4.innerHTML = `${meritList[i].COLLEGE_TYPE}`
 
-            outputArea.appendChild(tr);
+            p1.appendChild(s1);
+            p2.appendChild(s2);
+            p3.appendChild(s3);
+            p4.appendChild(s4);
+
+            div.classList.add('result_success')
+            div.appendChild(p1);
+            div.appendChild(p2);
+            div.appendChild(p3);
+            div.appendChild(p4);
+
+            document.getElementById('find_college_output').appendChild(div)
         }
     }
 }
