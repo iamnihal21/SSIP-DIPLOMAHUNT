@@ -52,10 +52,12 @@ function data() {
             let p2 = document.createElement('p');
             let p3 = document.createElement('p');
             let p4 = document.createElement('p');
+            let p5 = document.createElement('p');
             let s1 = document.createElement('span');
             let s2 = document.createElement('span');
             let s3 = document.createElement('span');
             let s4 = document.createElement('span');
+            let s5 = document.createElement('span');
 
             s1.innerHTML = meritList[i].COLLEGE_NAME
             s2.innerHTML = meritList[i].COURSE_NAME
@@ -76,18 +78,27 @@ function data() {
                 s3.innerHTML = `${meritList[i].ST}`
             }
             else { }
-            s4.innerHTML = `${meritList[i].COLLEGE_TYPE}`
+            s4.innerHTML = `${meritList[i].CITY_NAME}`
+            s5.innerHTML = `${meritList[i].COLLEGE_TYPE}`
+
+            p1.innerHTML = "College: ";
+            p2.innerHTML = "Branch: ";
+            p3.innerHTML = "Merit: ";
+            p4.innerHTML = "City: ";
+            p5.innerHTML = "College Type: ";
 
             p1.appendChild(s1);
             p2.appendChild(s2);
             p3.appendChild(s3);
             p4.appendChild(s4);
+            p5.appendChild(s5);
 
             div.classList.add('result_success')
             div.appendChild(p1);
             div.appendChild(p2);
             div.appendChild(p3);
             div.appendChild(p4);
+            div.appendChild(p5);
 
             document.getElementById('find_college_output').appendChild(div)
         }
@@ -95,6 +106,7 @@ function data() {
 }
 
 function isMark(mark, category, myMarit) {
+    console.log(myMarit);
     if (category == "OPEN") {
         if (parseInt(mark) > (parseInt(myMarit.OPEN) - 2)) {
             return true;
@@ -104,7 +116,7 @@ function isMark(mark, category, myMarit) {
     }
 
     else if (category == "EWS") {
-        if (myMarit[2] == "-" || myMarit[2] == "")
+        if (myMarit.EWS == "0" || myMarit.EWS == "")
             return false;
         else {
             if (parseInt(mark) > (parseInt(myMarit.EWS) - 2)) {
@@ -116,7 +128,7 @@ function isMark(mark, category, myMarit) {
     }
 
     else if (category == "SC") {
-        if (myMarit[3] == "-" || myMarit[3] == "")
+        if (myMarit.SC == "0" || myMarit.SC == "")
             return false;
         else {
             if (parseInt(mark) > (parseInt(myMarit.SC) - 2)) {
@@ -126,7 +138,7 @@ function isMark(mark, category, myMarit) {
             }
         }
     } else if (category == "SEBC") {
-        if (myMarit[4] == "-" || myMarit[4] == "")
+        if (myMarit.SEBC == "0" || myMarit.SEBC == "")
             return false;
         else {
             if (parseInt(mark) > (parseInt(myMarit.SEBC) - 2)) {
@@ -136,7 +148,7 @@ function isMark(mark, category, myMarit) {
             }
         }
     } else if (category == "ST") {
-        if (myMarit[5] == "-" || myMarit[5] == "")
+        if (myMarit.ST == "0" || myMarit.ST == "")
             return false;
         else {
             if (parseInt(mark) > (parseInt(myMarit.ST) - 2)) {
