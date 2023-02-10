@@ -20,9 +20,12 @@ let myCollege;
 let myCollegeType;
 let meritMark;
 let myCategory;
-const outputArea = document.querySelector('#outputArea')
+const outputArea = document.querySelector('#find_college_output')
 
 const meritList = []
+const branch = []
+const college = []
+const city = []
 
 function data() {
     outputArea.innerHTML = ''
@@ -32,7 +35,18 @@ function data() {
     myCollegeType = document.querySelector('#college_type').value
     myCategory = document.querySelector('#student_category').value
     myCity = document.querySelector('#city_name').value
-    console.log(meritMark, myBranch, myCollege,myCollegeType,myCategory,myCity)
+    // console.log(meritMark, myBranch, myCollege,myCollegeType,myCategory,myCity)
+
+    if(meritMark == '') {
+        alert('Please enter your total marks,\nTotal marks = English + Math + Science');    
+        return;
+    } 
+
+    if (myCategory == 'default') {
+        alert('Please select you category :D');    
+        return;
+    }
+
     for (let i = 0; i < meritList.length; i++) {
         console.log(isMark(meritMark, myCategory, meritList[i]) &&
         isBranch(myBranch, meritList[i].COURSE_NAME) &&
@@ -83,7 +97,7 @@ function data() {
 
             p1.innerHTML = "College: ";
             p2.innerHTML = "Branch: ";
-            p3.innerHTML = "Merit: ";
+            p3.innerHTML = "Closing Merit: ";
             p4.innerHTML = "City: ";
             p5.innerHTML = "College Type: ";
 
@@ -100,14 +114,20 @@ function data() {
             div.appendChild(p4);
             div.appendChild(p5);
 
-            document.getElementById('find_college_output').appendChild(div)
+            outputArea.appendChild(div)
         }
+    }
+
+    if(outputArea.innerHTML == '') {
+        p = document.createElement('p')
+        p.innerHTML = "No results found. Please adjust your inputs and try again."
+        p.classList.add('no-result-warning')
+        outputArea.appendChild(p)
     }
 }
 
 function isMark(mark, category, myMarit) {
-    console.log(myMarit);
-    if (category == "OPEN") {
+    if (category == "OPEN" && myMarit.OPEN != '0') {
         if (parseInt(mark) > (parseInt(myMarit.OPEN) - 2)) {
             return true;
         } else {
@@ -214,6 +234,44 @@ function isCollegeType(collegetype, myMarit) {
     }
 }
 
+function addDropdown() {
+    branch_name = document.getElementById("branch_name")
+    college_name = document.getElementById("college_name")
+    city_name = document.getElementById("city_name")
+    
+    let option = document.createElement('option');
+
+    option.value = 'ALL';
+    option.innerHTML = 'ALL';
+    branch_name.appendChild(option)
+    branch.forEach(function (item) {
+        option = document.createElement('option');
+        option.value = item;
+        option.innerHTML = item;
+        branch_name.appendChild(option)
+    })
+
+    option.value = 'ALL';
+    option.innerHTML = 'ALL';
+    college_name.appendChild(option)
+    college.forEach(function (item) {
+        option = document.createElement('option');
+        option.value = item;
+        option.innerHTML = item;
+        college_name.appendChild(option)
+    })
+
+    option.value = 'ALL';
+    option.innerHTML = 'ALL';
+    city_name.appendChild(option)
+    city.forEach(function (item) {
+        option = document.createElement('option');
+        option.value = item;
+        option.innerHTML = item;
+        city_name.appendChild(option)
+    })
+}
+
 // Fetch data from Google Sheet
 const fetchData = async () => {
     try {
@@ -231,11 +289,16 @@ const fetchData = async () => {
                     dataObject[header] = values[i][index];
                 });
                 meritList.push(dataObject);
+                if (!(college.includes(dataObject.COLLEGE_NAME))) { college.push(dataObject.COLLEGE_NAME); }
+                if (!(branch.includes(dataObject.COURSE_NAME))) { branch.push(dataObject.COURSE_NAME); }
+                if (!(city.includes(dataObject.CITY_NAME))) { city.push(dataObject.CITY_NAME); }
             }
+
+            addDropdown();
         } else {
             console.error("No data found in the Google Sheet");
         }
-        console.log(meritList);
+        // console.log(meritList);
     } catch (error) {
         console.error(error);
     }

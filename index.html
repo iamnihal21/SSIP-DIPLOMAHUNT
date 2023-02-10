@@ -86,7 +86,6 @@
                     <label for="branch_name">Branch Name</label>
                     <br>
                     <select name="branch_name" id="branch_name">
-                        <option value="ALL">All</option>
                         <!-- options from script -->
                     </select>
                 </div>
@@ -95,7 +94,6 @@
                     <label for="college_name">College Name</label>
                     <br>
                     <select name="college_name" id="college_name">
-                        <option value="ALL">All</option>
                         <!-- options from script -->
                     </select>
                 </div>
@@ -114,7 +112,7 @@
                     <label for="student_category">Category</label>
                     <br>
                     <select name="student_category" id="student_category">
-                        <option value="default">Select Your Category</option>
+                        <option value="default" selected>Select Your Category</option>
                         <option value="OPEN">OPEN</option>
                         <option value="SC">SC</option>
                         <option value="ST">ST</option>
@@ -126,7 +124,6 @@
                     <label for="city_name">City Name</label>
                     <br>
                     <select name="city_name" id="city_name">
-                        <option value="ALL">All</option>
                         <!-- options from script -->
                     </select>
                 </div>
@@ -138,13 +135,14 @@
             <div class="find_college_success">
                 <h2>Here are the results</h2>
                 <div id="find_college_output">
-                    <div class="result_success">
+                    <!-- Dummy data -->
+                    <!-- <div class="result_success">
                         <p class="college_name">College: <span>R.C. Technical Institue</span></p>
                         <p class="branch_name">Branch: <span>Computer</span></p>
                         <p class="cutoff">Merit: <span>155</span></p>
                         <p class="city">City: <span>Ahmedabad</span></p>
                         <p class="college_type">College Type: <span>Goverment</span></p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div id="outputArea"></div>
