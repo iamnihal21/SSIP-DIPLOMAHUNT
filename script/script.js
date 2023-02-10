@@ -6,14 +6,8 @@ const sheetId = "1yHd9LruwJGYuuHuWX5oHKK8AmTdbscqYQNNEsSiwuko";
 const apiKey = "AIzaSyDfdTtPMhqb_Fye-HA_aJ_LFJDobBZCpJ4";
 
 // URL to retrieve data from Google Sheet API
-const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`;
+const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Final?key=${apiKey}`;
 
-// let myCity = "ALL";
-// let myBranch = "COMPUTER ENGG";
-// let myCollege = "ALL";
-// let myCollegeType = "GOV";
-// let meritMark = "220";
-// let myCategory = "OPEN";
 let myCity;
 let myBranch;
 let myCollege;
@@ -244,6 +238,7 @@ function addDropdown() {
     option.value = 'ALL';
     option.innerHTML = 'ALL';
     branch_name.appendChild(option)
+    branch.sort()
     branch.forEach(function (item) {
         option = document.createElement('option');
         option.value = item;
@@ -254,6 +249,7 @@ function addDropdown() {
     option.value = 'ALL';
     option.innerHTML = 'ALL';
     college_name.appendChild(option)
+    college.sort()
     college.forEach(function (item) {
         option = document.createElement('option');
         option.value = item;
@@ -264,6 +260,7 @@ function addDropdown() {
     option.value = 'ALL';
     option.innerHTML = 'ALL';
     city_name.appendChild(option)
+    city.sort()
     city.forEach(function (item) {
         option = document.createElement('option');
         option.value = item;
