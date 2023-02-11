@@ -94,10 +94,10 @@ section > div{
     display: none;
 }
 
-#news_checkbox:checked + section {
+#settings_checkbox:checked + section {
     display: block;
 }
-#news_checkbox:not(:checked) + section {
+#settings_checkbox:not(:checked) + section {
     display: none;
 }
 

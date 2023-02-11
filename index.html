@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="/style/style.css">
+    <script type="text/javascript" src="/script/materialize.min.js"></script>
+    <link rel="manifest" href="/script/manifest.json">
     <script src="https://kit.fontawesome.com/a5c22c6bc6.js" crossorigin="anonymous"></script>
     <title>Diploma Hunt</title>
 </head>
@@ -33,19 +35,18 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </label>
                 </li>
-                <li>
+                <!-- <li>
                     <label for="news_checkbox">Latest News</label>
                     <label for="news_checkbox">
                         <i class="fa-solid fa-newspaper"></i>
                     </label>
-                </li>
-                <!-- <li>
-                    <select name="website_language" id="website_language">
-                        <option value="english">English</option>
-                        <option value="hindi">हिंदी</option>
-                        <option value="gujarati">ગુજરાતી</option>
-                    </select>
                 </li> -->
+                <li>
+                    <label for="settings_checkbox">Register</label>
+                    <label for="settings_checkbox">
+                        <i class="fa-solid fa-newspaper"></i>
+                    </label>
+                </li>
             </ul>
         </nav>
     </header>
@@ -112,7 +113,7 @@
                     <label for="student_category">Category</label>
                     <br>
                     <select name="student_category" id="student_category">
-                        <option value="default" selected>Select Your Category</option>
+                        <option value="default">Select Your Category</option>
                         <option value="OPEN">OPEN</option>
                         <option value="SC">SC</option>
                         <option value="ST">ST</option>
@@ -130,7 +131,7 @@
 
             </div>
             <div class="find_college_search">
-                <button onclick="data()">Search</button>
+                <button id="notification" onclick="data()">Search</button>
             </div>
             <div class="find_college_success">
                 <h2>Here are the results</h2>
@@ -149,20 +150,19 @@
         </div>
     </section>
 
-    <input type="radio" name="checkbox_tick" value="news_checkbox" id="news_checkbox" hidden>
+    <input type="radio" name="checkbox_tick" value="settings_checkbox" id="settings_checkbox" hidden>
     <section>
-        <div id="news">
-
+        <div class="contactus_form">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnF7rgYl3avx_9LCFe3b9eIaZp49pXJgGD0PFG2OLmTLhRIQ/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
     </section>
-
     <footer>
         <p>Made by <a href="#">Nihal <i class="fa-solid fa-music"></i></a> | <a href="#">Satyajit <i
                     class="fa-solid fa-gamepad"></i></a> | <a href="#">Pushpak <i class="fa-brands fa-apple"></i></a>
         </p>
     </footer>
-
-    <script src="script/script.js"></script>
+    <script src="/script/app.js"></script>
+    <script src="/script/script.js"></script>
 </body>
 
 </html>
