@@ -8,6 +8,7 @@ const apiKey = "AIzaSyDfdTtPMhqb_Fye-HA_aJ_LFJDobBZCpJ4";
 // URL to retrieve data from Google Sheet API
 const dataUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Final?key=${apiKey}`;
 const collegeUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Links_Of_collages?key=${apiKey}`;
+const tutotialUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Tutorial?key=${apiKey}`;
 
 let myCity;
 let myBranch;
@@ -16,12 +17,15 @@ let myCollegeType;
 let meritMark;
 let myCategory;
 const outputArea = document.querySelector('#find_college_output')
+const tutotial_videos = document.querySelector('#tutotial_videos')
 
 const meritList = []
 const branch = []
 const college = []
 const city = []
+const category = []
 const college_url = []
+const tutorial_video = []
 
 function data() {
     outputArea.innerHTML = ''
@@ -239,6 +243,7 @@ function addDropdown() {
     branch_name = document.getElementById("branch_name")
     college_name = document.getElementById("college_name")
     city_name = document.getElementById("city_name")
+    student_category = document.getElementById("college_type")
     
     let option = document.createElement('option');
 
@@ -250,7 +255,7 @@ function addDropdown() {
         option = document.createElement('option');
         option.value = item;
         option.innerHTML = item;
-        branch_name.appendChild(option)
+        branch_name.appendChild(option);
     })
 
     option.value = 'ALL';
@@ -261,7 +266,7 @@ function addDropdown() {
         option = document.createElement('option');
         option.value = item;
         option.innerHTML = item;
-        college_name.appendChild(option)
+        college_name.appendChild(option);
     })
 
     option.value = 'ALL';
@@ -272,7 +277,18 @@ function addDropdown() {
         option = document.createElement('option');
         option.value = item;
         option.innerHTML = item;
-        city_name.appendChild(option)
+        city_name.appendChild(option);
+    })
+
+    college_type.innerHTML = '';
+    option.value = 'ALL';
+    option.innerHTML = 'ALL';
+    college_type.appendChild(option)
+    category.forEach(function (item) {
+        option = document.createElement('option');
+        option.value = item;
+        option.innerHTML = item;
+        college_type.appendChild(option);
     })
 }
 
@@ -338,8 +354,9 @@ const fetchData = async () => {
                 if (!(college.includes(dataObject.COLLEGE_NAME))) { college.push(dataObject.COLLEGE_NAME); }
                 if (!(branch.includes(dataObject.COURSE_NAME))) { branch.push(dataObject.COURSE_NAME); }
                 if (!(city.includes(dataObject.CITY_NAME))) { city.push(dataObject.CITY_NAME); }
+                if (!(category.includes(dataObject.COLLEGE_TYPE))) { category.push(dataObject.COLLEGE_TYPE) }
             }
-
+            
             addDropdown();
             fetchCollegeUrl();
         } else {
@@ -352,6 +369,59 @@ const fetchData = async () => {
 };
 
 fetchData();
+
+// Add videos to html with data fetch from fetchTutorial
+function addVideos() {
+    tutorial_video.forEach(function (i) {
+        console.log(i);
+        let video = document.createElement('div');
+        let h3 = document.createElement('h3');
+        let iframe = document.createElement('iframe');
+
+        h3.innerHTML = i.VIDEO_TITLE;
+        iframe.innerHTML = 'Loading...'
+        iframe.setAttribute('src', i.VIDEO_LINK)
+        // iframe.setAttribute('height', 'auto')
+        // iframe.setAttribute('width', 'auto');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+
+        video.appendChild(h3);
+        video.appendChild(iframe);
+
+        tutotial_videos.appendChild(video);
+    })
+}
+
+// Fetch data from Google Sheet of merit data
+const fetchTutorial = async () => {
+    try {
+        const response = await fetch(tutotialUrl);
+        const data = await response.json();
+
+        const values = data.values;
+
+        if (values.length) {
+            const headers = values[0];
+
+            for (let i = 1; i < values.length; i++) {
+                const dataObject = {};
+                headers.forEach((header, index) => {
+                    dataObject[header] = values[i][index];
+                });
+                tutorial_video.push(dataObject);
+            }
+            addVideos();
+        } else {
+            console.error("No data found in the Tutorial Sheet");
+        }
+        console.log(tutorial_video);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+fetchTutorial();
 
 // End time of the SCript
 const endTime = new Date();

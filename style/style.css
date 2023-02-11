@@ -102,6 +102,13 @@ section > div{
     display: none;
 }
 
+#tutorial_checkbox:checked + section {
+    display: block;
+}
+#tutorial_checkbox:not(:checked) + section {
+    display: none;
+}
+
 /* Common code for section end */
 
 /* Hero start */
@@ -222,6 +229,34 @@ section > div{
     color: #808080;
     text-decoration: none;
 }
+
+/* Tutorai start */
+#tutotial_videos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#tutotial_videos div {
+    margin-bottom: 24px;
+    width: 300px;
+}
+
+#tutotial_videos h3 {
+    margin-bottom: 8px;
+}
+
+#tutotial_videos iframe {
+    width: 100%;
+}
+/* Tutorai end */
+
+/* Email start */
+.contactus_form iframe {
+    display: block;
+    margin: auto;
+}
+/* Email end */
 
 /* Footer start */
 footer {
@@ -354,6 +389,16 @@ footer a:hover{
     }
 
     /* Hero end */
+
+    /* Tutorial start */
+    #tutotial_videos div {
+        width: 400px;
+    }
+    
+    #tutotial_videos iframe {
+        height: 200px;
+    }
+    /* Tutorial end */
 
     /* Footer start */
     footer {

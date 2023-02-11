@@ -43,6 +43,12 @@
                     </label>
                 </li> -->
                 <li>
+                    <label for="tutorial_checkbox">Tutorial</label>
+                    <label for="tutorial_checkbox">
+                        <i class="fa-solid fa-shapes"></i>
+                    </label>
+                </li>
+                <li>
                     <label for="settings_checkbox">Email Subscribe</label>
                     <label for="settings_checkbox">
                         <i class="fa-solid fa-bell"></i>
@@ -105,9 +111,9 @@
                     <label for="college_type">College Type</label>
                     <br>
                     <select name="college_type" id="college_type">
-                        <option value="ALL">All</option>
+                        <!-- <option value="ALL">All</option>
                         <option value="GOV">Goverment</option>
-                        <option value="SFI">Self Finance</option>
+                        <option value="SFI">Self Finance</option> -->
                     </select>
                 </div>
 
@@ -152,12 +158,24 @@
         </div>
     </section>
 
+    <input type="radio" name="checkbox_tick" value="tutorial_checkbox" id="tutorial_checkbox" hidden>
+    <section>
+        <div id="tutotial_videos">
+            <!-- Dummy data -->
+            <!-- <div>
+                <h3 class="tutorial_videos_title"></h3>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnF7rgYl3avx_9LCFe3b9eIaZp49pXJgGD0PFG2OLmTLhRIQ/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
+            </div>
+        </div>
+    </section>
+
     <input type="radio" name="checkbox_tick" value="settings_checkbox" id="settings_checkbox" hidden>
     <section>
         <div class="contactus_form">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnF7rgYl3avx_9LCFe3b9eIaZp49pXJgGD0PFG2OLmTLhRIQ/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnF7rgYl3avx_9LCFe3b9eIaZp49pXJgGD0PFG2OLmTLhRIQ/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
         </div>
     </section>
+
     <footer>
         <p>Made by <a href="#">Nihal <i class="fa-solid fa-music"></i></a> | <a href="#">Satyajit <i
                     class="fa-solid fa-gamepad"></i></a> | <a href="#">Pushpak <i class="fa-brands fa-apple"></i></a>
