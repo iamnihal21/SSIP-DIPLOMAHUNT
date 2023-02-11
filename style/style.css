@@ -1,5 +1,6 @@
 :root {
     --primary: #052963;
+    --lightprimary: #003a98;
     --secondary: #fbac1b;
     --lightsecondary: #ffc355;
 }
@@ -115,9 +116,8 @@ section > div{
     width: 50%;
 }
 
-#hero .hero_right iframe {
+#hero div div img {
     width: 100%;
-    aspect-ratio: 9/6;
 }
 
 #hero .hero_left h2 {
@@ -133,6 +133,12 @@ section > div{
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
+    border: 2px solid var(--lightprimary);
+    transition: 200ms;
+}
+
+#hero button:hover {
+    box-shadow: 0px 0px 4px #808080;
 }
 
 #hero button label {
@@ -193,15 +199,14 @@ section > div{
 .find_college_success > div {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    flex: 33%;
+    justify-content: space-around;
 }
 
 .find_college_success .result_success {
     border: 1px solid #808080;
     border-radius: 8px;
     padding: 24px;
-    width: 300px;
+    width: 310px;
     margin-bottom: 24px;
 }
 
@@ -211,6 +216,11 @@ section > div{
 
 .find_college_success .result_success p span {
     font-weight: 600;
+}
+
+.find_college_success .result_success p a {
+    color: #808080;
+    text-decoration: none;
 }
 
 /* Footer start */
@@ -235,11 +245,13 @@ footer a:hover{
 
 /* PWA and Mobile Responsive */
 
-@media (max-width: 768px) {
-    section > div{
-        padding: 30px;
+@media (max-width: 1024px) {
+    section > div {
+        padding: 70px 0 0 0;
     }
-    
+}
+
+@media (max-width: 768px) {
     /* Header start */
 
     header {
@@ -293,11 +305,9 @@ footer a:hover{
         right: 8px;
     }
 
-    header nav ul li label:first-child {
-        display: none;
-    }
     header nav ul li label:last-child {
-        display: block;
+        display: inline-block;
+        margin-left: 4px;
     }
 
     /* Header end */
@@ -305,6 +315,20 @@ footer a:hover{
     /* Common section start */
     section {
         margin-top: 86px;
+    }
+
+    #settings_checkbox:checked + section {
+        margin: 0;
+        padding: 0;
+    }
+    #settings_checkbox:checked + section .contactus_form{
+        margin: 86px 0 0 0;
+        padding: 0;
+    }
+    #settings_checkbox:checked + section .contactus_form iframe{
+        margin: 0;
+        padding: 0;
+        width: 125%;
     }
     /* Common section end */
 
@@ -316,7 +340,7 @@ footer a:hover{
         flex-wrap: wrap;
     }
 
-    #hero div {
+    #hero div div {
         width: 100%;
         margin: 20px 0;
     }
@@ -338,9 +362,27 @@ footer a:hover{
     /* Footer end */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 425px) {
+    /* Header start */
+    header nav ul li label:first-child {
+        display: none;
+    }
+    /* Header end */
 
-    
+    /* Hero start */
+    #hero .hero_left h2 {
+        font-size: 10vw;
+    }
+    /* Hero end */
 
-    
+    /* Find college start */
+    #find_college .find_college_input {
+        display: block;
+    }
+    #find_college .find_college_input :is(input, select)    {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    /* Find college end */
+
 }

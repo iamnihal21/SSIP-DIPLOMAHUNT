@@ -6,7 +6,8 @@ const sheetId = "1yHd9LruwJGYuuHuWX5oHKK8AmTdbscqYQNNEsSiwuko";
 const apiKey = "AIzaSyDfdTtPMhqb_Fye-HA_aJ_LFJDobBZCpJ4";
 
 // URL to retrieve data from Google Sheet API
-const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Final?key=${apiKey}`;
+const dataUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Final?key=${apiKey}`;
+const collegeUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Links_Of_collages?key=${apiKey}`;
 
 let myCity;
 let myBranch;
@@ -20,6 +21,7 @@ const meritList = []
 const branch = []
 const college = []
 const city = []
+const college_url = []
 
 function data() {
     outputArea.innerHTML = ''
@@ -66,28 +68,32 @@ function data() {
             let s3 = document.createElement('span');
             let s4 = document.createElement('span');
             let s5 = document.createElement('span');
+            let a = document.createElement('a');
 
-            s1.innerHTML = meritList[i].COLLEGE_NAME
-            s2.innerHTML = meritList[i].COURSE_NAME
+            s1.innerHTML = meritList[i].COLLEGE_NAME;
+            s2.innerHTML = meritList[i].COURSE_NAME;
 
             if (myCategory == "OPEN") {
-                s3.innerHTML = `${meritList[i].OPEN}`
+                s3.innerHTML = `${meritList[i].OPEN}`;
             }
             else if (myCategory == "EWS") {
-                s3.innerHTML = `${meritList[i].EWS}`
+                s3.innerHTML = `${meritList[i].EWS}`;
             }
             else if (myCategory == "SC") {
-                s3.innerHTML = `${meritList[i].SC}`
+                s3.innerHTML = `${meritList[i].SC}`;
             }
             else if (myCategory == "SEBC") {
-                s3.innerHTML = `${meritList[i].SEBC}`
+                s3.innerHTML = `${meritList[i].SEBC}`;
             }
             else if (myCategory == "ST") {
-                s3.innerHTML = `${meritList[i].ST}`
+                s3.innerHTML = `${meritList[i].ST}`;
             }
             else { }
-            s4.innerHTML = `${meritList[i].CITY_NAME}`
-            s5.innerHTML = `${meritList[i].COLLEGE_TYPE}`
+            s4.innerHTML = `${meritList[i].CITY_NAME}`;
+            s5.innerHTML = `${meritList[i].COLLEGE_TYPE}`;
+            a.innerHTML = '&nbsp;&nbsp;<i class="fa-solid fa-link"></i>';
+            a.href = meritList[i].WEBSITE_LINK;
+            a.target = '_blank';
 
             p1.innerHTML = "College: ";
             p2.innerHTML = "Branch: ";
@@ -96,6 +102,7 @@ function data() {
             p5.innerHTML = "College Type: ";
 
             p1.appendChild(s1);
+            p1.appendChild(a);
             p2.appendChild(s2);
             p3.appendChild(s3);
             p4.appendChild(s4);
@@ -269,10 +276,52 @@ function addDropdown() {
     })
 }
 
-// Fetch data from Google Sheet
+function addURLobject() {
+    college_url.forEach(function(i) {
+        meritList.forEach(function(j) {
+            if(i.COLLEGE_NAME == j.COLLEGE_NAME) {
+                j['WEBSITE_LINK'] = i.WEBSITE_LINK;
+            }
+        })
+    })
+
+    console.log(meritList)
+}
+
+// Fetch data from Google Sheet of college URLs
+const fetchCollegeUrl = async () => {
+    try {
+        const response = await fetch(collegeUrl);
+        const data = await response.json();
+
+        const values = data.values;
+
+        if (values.length) {
+            const headers = values[0];
+
+            for (let i = 1; i < values.length; i++) {
+                const dataObject = {};
+                headers.forEach((header, index) => {
+                    dataObject[header] = values[i][index];
+                });
+                college_url.push(dataObject);
+            }
+
+            addDropdown();
+            addURLobject();
+        } else {
+            console.error("No data found in the Links_Of_collages Sheet");
+        }
+        console.log(college_url);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Fetch data from Google Sheet of merit data
 const fetchData = async () => {
     try {
-        const response = await fetch(url);
+        const response = await fetch(dataUrl);
         const data = await response.json();
 
         const values = data.values;
@@ -292,6 +341,7 @@ const fetchData = async () => {
             }
 
             addDropdown();
+            fetchCollegeUrl();
         } else {
             console.error("No data found in the Google Sheet");
         }
